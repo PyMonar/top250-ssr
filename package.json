@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "packserver": "webpack --config build/webpack.server.conf.js",
+    "packclient": "webpack --config build/webpack.dev.conf.js"
   },
   "dependencies": {
     "axios": "^0.18.0",

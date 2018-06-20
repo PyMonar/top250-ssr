@@ -11,12 +11,17 @@
 <script>
 export default {
   name: 'Movie',
+  // 服务器端预取数据
+  asyncData ({ store }) {
+    return store.dispatch('FETCH_MOVIES')
+  },
   computed: {
     movies () {
       return this.$store.state.movies
     }
   },
-  created () {
+  // 客户端预取数据
+  beforeMount () {
     this.$store.dispatch('FETCH_MOVIES')
   }
 }

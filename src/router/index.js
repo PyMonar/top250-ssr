@@ -3,12 +3,20 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Movie',
-      component: () => import('../components/Movie.vue')
-    }
-  ]
-})
+export function createRouter () {
+  return new Router({
+    mode: 'history',
+    routes: [
+      {
+        path: '/',
+        name: 'Movie',
+        component: () => import('../components/Movie.vue')
+      },
+      {
+        path: '/top250',
+        name: 'Movie',
+        component: () => import('../components/Movie.vue')
+      }
+    ]
+  })
+}

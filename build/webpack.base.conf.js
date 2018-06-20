@@ -8,12 +8,10 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-
-
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js'
+    app: './src/entry-client.js'
   },
   output: {
     path: config.build.assetsRoot,
