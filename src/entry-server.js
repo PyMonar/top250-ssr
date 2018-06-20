@@ -7,14 +7,11 @@ export default context => {
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
       if (!matchedComponents.length) {
-        console.log('404')
         reject({ code: 404 })
       }
       // 预取数据
       Promise.all(matchedComponents.map(Component => {
         if (Component.asyncData) {
-          console.log('Component Name', Component.name)
-          console.log('Start get sync data:')
           return Component.asyncData({
             store
           })
@@ -25,7 +22,6 @@ export default context => {
         // 当我们将状态附加到上下文，
         // 并且 `template` 选项用于 renderer 时，
         // 状态将自动序列化为 `window.__INITIAL_STATE__`，并注入 HTML。
-        console.log('Get Sync Data')
         context.state = store.state
         resolve(app)
       }).catch(err => {
