@@ -1,7 +1,7 @@
 <template>
   <div id="movie">
     <ol>
-      <li v-for="movie in movies" :key="movie.id">
+      <li v-for="movie in movies" :key="movie.id" @click="show(movie.title)">
         {{movie.title}}
       </li>
     </ol>
@@ -14,6 +14,11 @@ export default {
   // 服务器端预取数据
   asyncData ({ store }) {
     return store.dispatch('FETCH_MOVIES')
+  },
+  methods: {
+    show (title) {
+      console.log(title)
+    }
   },
   computed: {
     movies () {

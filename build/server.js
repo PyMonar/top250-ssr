@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
-const renderer = require('vue-server-renderer').createRenderer()
+const path = require('path')
+const renderer = require('vue-server-renderer').createRenderer({
+  template: require('fs').readFileSync(path.resolve(__dirname, '../index.template.html'), 'utf-8')
+})
 const proxy = require('http-proxy-middleware')
 
 const options = {
@@ -12,6 +15,8 @@ const options = {
 }
 
 app.use('/api', proxy(options))
+
+app.use(express.static('dist'))
 
 const createApp = require('../dist/server-bundle.js').default
 
@@ -28,7 +33,7 @@ app.get('*', (req, res) => {
           res.status(500).end('Internal Server Error')
         }
       } else {
-        res.writeHead(200,{'Content-Type':'text/html;charset=utf-8'})
+        res.writeHead(200, {'Content-Type':'text/html;charset=utf-8'})
         res.end(html)
       }
     })
