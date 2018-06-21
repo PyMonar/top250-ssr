@@ -18,7 +18,7 @@ const renderer = createRenderer(bundle, template)
 // 设置代理
 const proxy = require('http-proxy-middleware')
 const options = {
-  target: 'http://api.douban.com/v2',
+  target: 'https://api.douban.com/v2',
   changeOrigin: true,
   pathRewrite: {
     '^/api': ''

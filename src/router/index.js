@@ -11,6 +11,15 @@ export function createRouter () {
         path: '/',
         name: 'Movie',
         component: () => import('../components/Movie.vue')
+      },
+      {
+        path: '/movie',
+        redirect: '/'
+      },
+      {
+        path: '/us',
+        name: 'US',
+        component: () => import('../components/US.vue')
       }
     ]
   })

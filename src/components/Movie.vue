@@ -1,5 +1,6 @@
 <template>
   <div id="movie">
+    <h4>豆瓣TOP250</h4>
     <ol>
       <li v-for="movie in movies" :key="movie.id" @click="show(movie.title)">
         {{movie.title}}
