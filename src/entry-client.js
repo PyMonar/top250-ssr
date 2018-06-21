@@ -1,6 +1,6 @@
 import { createApp } from './app'
 
-const { app, router } = createApp()
+const { app, router, store } = createApp()
 
 if (window.__INITIAL_STATE__) {
   console.log('Yes! Hydrate!')
