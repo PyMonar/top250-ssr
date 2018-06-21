@@ -29,24 +29,19 @@ app.use('/dist', express.static('./dist'))
 
 app.get('*', (req, res) => {
   const context = { url: req.url }
-  console.log('context:', context)
-  //createApp(context).then(app => {
-    renderer.renderToString(context, (err, html) => {
-      console.log('html:', html)
-      if (err) {
-        if (err.code === 404) {
-          res.status(404).end('Page not found')
-        } else {
-          res.status(500).end('Internal Server Error')
-        }
+  renderer.renderToString(context, (err, html) => {
+    console.log('html:', html)
+    if (err) {
+      if (err.code === 404) {
+        res.status(404).end('Page not found')
       } else {
-        res.writeHead(200, {'Content-Type':'text/html;charset=utf-8'})
-        res.end(html)
+        res.status(500).end('Internal Server Error')
       }
-    })
-  // }).catch(err => {
-  //   res.status(404).end('Page not found')
-  // })
+    } else {
+      res.writeHead(200, {'Content-Type':'text/html;charset=utf-8'})
+      res.end(html)
+    }
+  })
 })
 
 app.listen(3000)
